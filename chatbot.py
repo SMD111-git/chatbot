@@ -1,4 +1,18 @@
 import nltk
+from nltk.stem import WordNetLemmatizer
+
+# Ensure necessary resources are downloaded
+nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('wordnet')
+
+lemmatizer = WordNetLemmatizer()
+
+def preprocess(text):
+    tokens = nltk.word_tokenize(text.lower())
+    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
+    return ' '.join(lemmatized_tokens)
+
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
